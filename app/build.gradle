@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.billcalculator"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //Dependencies
+    implementation deps.android.constraint_layout
+    implementation deps.android.lifecycle_extensions
+    implementation deps.android.ktx_fragment
+    implementation deps.android.fragment
+    implementation deps.android.appcompat
+    implementation deps.android.recyclerview
+    implementation deps.android.design
+    implementation deps.room.runtime
+
+    implementation deps.kotlin.kotlin_jre
+    implementation deps.kotlin.coroutines_core
+    implementation deps.kotlin.coroutines_android
+
+    kapt deps.room.compiler
+
+    testImplementation deps.test.junit
+    testImplementation deps.test.mockk
+    testImplementation deps.test.kotlin_junit
+}
