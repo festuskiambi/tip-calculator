@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <data>
+
     <variable
         name="vm"
         type="com.example.billcalculator.viewmodel.RestuarantViewModel"/>
@@ -35,6 +36,7 @@
           android:layout_height="wrap_content"
           android:hint="@string/check_amount"
           android:inputType="numberDecimal"
+          android:text="@={vm.inputCheckAmount}"
           android:id="@+id/ed_check_amount"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,6 +56,7 @@
           android:layout_height="wrap_content"
           android:hint="@string/tip_percentage"
           android:inputType="number"
+          android:text="@={vm.inputTipPercentage}"
           android:id="@+id/edt_tip_percentage"/>
     </com.google.android.material.textfield.TextInputLayout>
 
