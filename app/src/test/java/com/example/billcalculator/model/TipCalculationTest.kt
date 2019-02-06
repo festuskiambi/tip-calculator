@@ -17,7 +17,7 @@ class TipCalculationTest {
          tipPctg: Int = 25,
          tipAmount: Double = 2.50,
          grandTotal: Double = 12.50
-    ) = TipCalcalculation(
+    ) = TipCalculation(
         checkAmount,
         tipPctg,
         tipAmount,

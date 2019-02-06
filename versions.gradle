@@ -68,6 +68,10 @@ kotlin.coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version
 kotlin.coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine_version"
 deps.kotlin = kotlin
 
+def data_binding = [:]
+data_binding.dataBinding = "com.android.databinding:compiler:$versions.android_gradle_plugin"
+deps.data_binding = data_binding
+
 
 def build_versions = [:]
 build_versions.min_sdk = 21

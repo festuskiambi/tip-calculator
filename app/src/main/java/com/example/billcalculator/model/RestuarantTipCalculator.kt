@@ -8,7 +8,7 @@ import java.math.RoundingMode
 
 class RestuarantTipCalculator {
 
-    fun calculateTip(checkAmount: Double, tipPctg: Int): TipCalcalculation {
+    fun calculateTip(checkAmount: Double, tipPctg: Int): TipCalculation {
         val tipAmount = (checkAmount * (tipPctg.toDouble() / 100))
             .toBigDecimal()
             .setScale(2, RoundingMode.HALF_UP)
@@ -16,6 +16,6 @@ class RestuarantTipCalculator {
 
         val grandTotal = checkAmount + tipAmount
 
-        return TipCalcalculation(checkAmount, tipPctg, tipAmount, grandTotal)
+        return TipCalculation(checkAmount, tipPctg, tipAmount, grandTotal)
     }
 }
