@@ -16,6 +16,6 @@ class RestuarantTipCalculator {
 
         val grandTotal = checkAmount + tipAmount
 
-        return TipCalculation(checkAmount, tipPctg, tipAmount, grandTotal)
+        return TipCalculation("",checkAmount, tipPctg, tipAmount, grandTotal)
     }
 }

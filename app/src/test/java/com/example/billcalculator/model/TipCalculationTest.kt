@@ -13,11 +13,13 @@ class TipCalculationTest {
     val restuarantTipCalculator: RestuarantTipCalculator = RestuarantTipCalculator()
 
     fun getCalculation(
+         locationName: String = "Nairobi",
          checkAmount: Double = 10.00,
          tipPctg: Int = 25,
          tipAmount: Double = 2.50,
          grandTotal: Double = 12.50
     ) = TipCalculation(
+        locationName,
         checkAmount,
         tipPctg,
         tipAmount,
