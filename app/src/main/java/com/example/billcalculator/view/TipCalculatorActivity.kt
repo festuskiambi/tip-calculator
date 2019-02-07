@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.example.billcalculator.R
 import com.example.billcalculator.databinding.ActivityMainBinding
 import com.example.billcalculator.viewmodel.RestuarantViewModel
@@ -20,11 +21,8 @@ class TipCalculatorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        binding.vm = RestuarantViewModel()
-        setSupportActionBar(toolbar)
-
-
-
+        binding.vm = ViewModelProviders.of(this).get(RestuarantViewModel::class.java)
+        setSupportActionBar(binding.toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

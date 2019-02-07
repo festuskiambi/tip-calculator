@@ -79,7 +79,7 @@
           android:layout_weight="1">
 
         <TextView
-            android:text=""
+            android:text="@{vm.outputCheckAmount}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
             android:textAlignment="center"
@@ -100,7 +100,7 @@
           android:layout_weight="1">
 
         <TextView
-            android:text=""
+            android:text="@{vm.outputTipAmount}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
           android:layout_weight="1">
 
         <TextView
-            android:text=""
+            android:text="@{vm.outputTotalAmount}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textAlignment="center"
             android:layout_width="match_parent"

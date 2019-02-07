@@ -1,5 +1,7 @@
 package com.example.billcalculator.viewmodel
 
+import android.app.Application
+import com.example.billcalculator.R
 import com.example.billcalculator.model.RestuarantTipCalculator
 import com.example.billcalculator.model.TipCalculation
 import io.mockk.clearMocks
@@ -17,8 +19,9 @@ import kotlin.test.assertEquals
 class RestuarantViewModelTest {
 
     val restuarantTipCalculator: RestuarantTipCalculator = mockk(relaxed = true)
+    val application: Application = mockk(relaxed = true)
 
-    val restuarantViewModel: RestuarantViewModel = RestuarantViewModel(restuarantTipCalculator)
+    val restuarantViewModel: RestuarantViewModel = RestuarantViewModel(application,restuarantTipCalculator)
 
 
     fun getCalculation(
@@ -38,6 +41,11 @@ class RestuarantViewModelTest {
         clearMocks()
     }
 
+    private fun priceStub(given: Double, stubedPrice: String){
+        every { application.getString(R.string.dollar_amount, given)} returns stubedPrice
+
+    }
+
     @Test
     fun `calculate tip successfully`() {
         val calculation = getCalculation()
@@ -46,10 +54,17 @@ class RestuarantViewModelTest {
 
         every { restuarantTipCalculator.calculateTip(calculation.checkAmount, calculation.tipPctg) } returns calculation
 
-        val result = restuarantViewModel.calculateTip()
+        priceStub(10.00,"$10.00")
+        priceStub(2.50,"$2.50")
+        priceStub(12.50,"$12.50")
+
+        restuarantViewModel.calculateTip()
+
 
         verify { restuarantTipCalculator.calculateTip(calculation.checkAmount, calculation.tipPctg) }
-        assertEquals(result, calculation)
+        assertEquals("$10.00", restuarantViewModel.outputCheckAmount)
+        assertEquals("$2.50", restuarantViewModel.outputTipAmount)
+        assertEquals("$12.50", restuarantViewModel.outputTotalAmount)
     }
 
 }
