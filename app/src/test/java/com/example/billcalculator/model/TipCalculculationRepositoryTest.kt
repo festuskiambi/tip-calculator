@@ -1,11 +1,14 @@
 package com.example.billcalculator.model
 
+import com.example.billcalculator.InstantExecutorExtension
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.test.assertEquals
 
 /**
  * Created by Festus Kiambi on 2/7/19.
  */
+@ExtendWith(InstantExecutorExtension::class)
 class TipCalculculationRepositoryTest {
 
     val tipCalculationRepository  = TipCalculationRepository()
@@ -42,6 +45,10 @@ class TipCalculculationRepositoryTest {
         tipCalculationRepository.saveTipCalculation(tipCalculation)
         tipCalculationRepository.saveTipCalculation(tipCalculation1)
 
-        val result = tipCalculationRepository.getTipcalculations()
+        tipCalculationRepository.getTipcalculations().observeForever { tipCalculations ->
+            assertEquals(2,tipCalculations?.size)
+        }
+
+
     }
 }
