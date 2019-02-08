@@ -1,6 +1,8 @@
 package com.example.billcalculator.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.example.billcalculator.R
 import com.example.billcalculator.model.RestuarantTipCalculator
 import com.example.billcalculator.model.TipCalculation
@@ -54,6 +56,29 @@ class RestuarantViewModel @JvmOverloads constructor(
         restuarantTipCalculator.saveTipCalculation(tipToSave)
 
         updateOutputs(tipToSave)
+    }
+
+    fun getSavedCalculationTips(): LiveData<List<TipCalculationSummaryItem>> {
+        return Transformations.map(restuarantTipCalculator.getTipCalCulations()) { tipCalculationObjects ->
+            tipCalculationObjects.map {
+                TipCalculationSummaryItem(
+                    it.locationName,
+                    getApplication<Application>().getString(R.string.dollar_amount, it.grandTotal)
+                )
+            }
+        }
+    }
+
+    fun loadTipCalculation(name: String) {
+
+        val tipCalculation = restuarantTipCalculator.getTipCalCulationById(name)
+
+        if(tipCalculation !=null){
+            inputCheckAmount = tipCalculation.checkAmount.toString()
+            inputTipPercentage = tipCalculation.tipPctg.toString()
+            updateOutputs(tipCalculation)
+            notifyChange()
+        }
     }
 
 

@@ -21,7 +21,7 @@ class RestuarantViewModelTest {
     val restuarantTipCalculator: RestuarantTipCalculator = mockk(relaxed = true)
     val application: Application = mockk(relaxed = true)
 
-    val restuarantViewModel: RestuarantViewModel = RestuarantViewModel(application,restuarantTipCalculator)
+    val restuarantViewModel: RestuarantViewModel = RestuarantViewModel(application, restuarantTipCalculator)
 
 
     fun getCalculation(
@@ -43,8 +43,8 @@ class RestuarantViewModelTest {
         clearMocks()
     }
 
-    private fun priceStub(given: Double, stubedPrice: String){
-        every { application.getString(R.string.dollar_amount, given)} returns stubedPrice
+    private fun priceStub(given: Double, stubedPrice: String) {
+        every { application.getString(R.string.dollar_amount, given) } returns stubedPrice
 
     }
 
@@ -56,9 +56,9 @@ class RestuarantViewModelTest {
 
         every { restuarantTipCalculator.calculateTip(calculation.checkAmount, calculation.tipPctg) } returns calculation
 
-        priceStub(10.00,"$10.00")
-        priceStub(2.50,"$2.50")
-        priceStub(12.50,"$12.50")
+        priceStub(10.00, "$10.00")
+        priceStub(2.50, "$2.50")
+        priceStub(12.50, "$12.50")
 
         restuarantViewModel.calculateTip()
 
@@ -70,7 +70,7 @@ class RestuarantViewModelTest {
     }
 
     @Test
-    fun `on save new tip successfully` (){
+    fun `on save new tip successfully`() {
         val calculation = getCalculation()
         restuarantViewModel.inputCheckAmount = calculation.checkAmount.toString()
         restuarantViewModel.inputTipPercentage = calculation.tipPctg.toString()
@@ -82,6 +82,22 @@ class RestuarantViewModelTest {
 
         verify { restuarantTipCalculator.calculateTip(calculation.checkAmount, calculation.tipPctg) }
         assertEquals(calculation.locationName, restuarantViewModel.locationName)
+    }
+
+    @Test
+    fun `on get tip location by id successfully`() {
+        val calculation = getCalculation()
+
+        every { restuarantTipCalculator.getTipCalCulationById(calculation.locationName) } returns calculation
+
+        restuarantViewModel.loadTipCalculation(calculation.locationName)
+
+        verify { restuarantTipCalculator.getTipCalCulationById(calculation.locationName) }
+        assertEquals(restuarantViewModel.inputCheckAmount, calculation.checkAmount.toString())
+    }
+
+    @Test
+    fun `on get saved ti calculations succesffuly` (){
 
     }
 

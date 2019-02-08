@@ -145,6 +145,7 @@
         android:text="@{vm.locationName}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:id="@+id/tv_location_name"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="8dp"

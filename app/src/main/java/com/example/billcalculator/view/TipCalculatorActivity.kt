@@ -1,24 +1,25 @@
 package com.example.billcalculator.view
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.billcalculator.R
 import com.example.billcalculator.databinding.ActivityMainBinding
 import com.example.billcalculator.viewmodel.RestuarantViewModel
 
-import kotlinx.android.synthetic.main.activity_main.*
-
-class TipCalculatorActivity : AppCompatActivity(), SaveDialogFragment.Callback {
+class TipCalculatorActivity : AppCompatActivity(), SaveDialogFragment.Callback, LoadDialogFragment.Callback {
 
     lateinit var binding: ActivityMainBinding
 
     override fun onSaveTip(name: String) {
         binding.vm?.saveCurrentTip(name)
+    }
+
+    override fun onTipSelected(name: String) {
+        binding.vm?.loadTipCalculation(name)
     }
 
 
@@ -31,23 +32,29 @@ class TipCalculatorActivity : AppCompatActivity(), SaveDialogFragment.Callback {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_tip_calculator, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         return when (item.itemId) {
             R.id.action_save -> {
                 showSaveDialog()
                  true
             }
+
+            R.id.action_load ->{
+                showLoadDialog()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun showLoadDialog() {
+        val loadDialogFragment = LoadDialogFragment()
+        loadDialogFragment.show(supportFragmentManager,"LoadDialog")    }
 
     private fun showSaveDialog() {
         val saveDialogFragment = SaveDialogFragment()
