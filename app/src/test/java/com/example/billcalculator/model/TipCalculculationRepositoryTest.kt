@@ -33,7 +33,7 @@ class TipCalculculationRepositoryTest {
 
         tipCalculationRepository.saveTipCalculation(tipCalculation)
 
-        assertEquals(tipCalculation, tipCalculationRepository.getTipCalculationByID(tipCalculation.locationname))
+        assertEquals(tipCalculation, tipCalculationRepository.getTipCalculationByID(tipCalculation.locationName))
 
     }
 

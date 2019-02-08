@@ -5,7 +5,7 @@ package com.example.billcalculator.model
  */
 
 data class TipCalculation(
-    val locationname: String = "",
+    val locationName: String = "",
     val checkAmount: Double = 0.0,
     val tipPctg: Int = 0,
     val tipAmount: Double = 0.0,

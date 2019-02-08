@@ -69,4 +69,20 @@ class RestuarantViewModelTest {
         assertEquals("$12.50", restuarantViewModel.outputTotalAmount)
     }
 
+    @Test
+    fun `on save new tip successfully` (){
+        val calculation = getCalculation()
+        restuarantViewModel.inputCheckAmount = calculation.checkAmount.toString()
+        restuarantViewModel.inputTipPercentage = calculation.tipPctg.toString()
+
+        every { restuarantTipCalculator.calculateTip(calculation.checkAmount, calculation.tipPctg) } returns calculation
+
+        restuarantViewModel.calculateTip()
+        restuarantViewModel.saveCurrentTip(calculation.locationName)
+
+        verify { restuarantTipCalculator.calculateTip(calculation.checkAmount, calculation.tipPctg) }
+        assertEquals(calculation.locationName, restuarantViewModel.locationName)
+
+    }
+
 }

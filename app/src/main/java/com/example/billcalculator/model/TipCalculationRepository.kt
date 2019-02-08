@@ -12,7 +12,7 @@ class TipCalculationRepository {
 
     fun saveTipCalculation(tipCalculation: TipCalculation) {
 
-        savedTipCalculations[tipCalculation.locationname] = tipCalculation
+        savedTipCalculations[tipCalculation.locationName] = tipCalculation
 
     }
 

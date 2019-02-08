@@ -7,4 +7,7 @@
     <string name="label_total">Total</string>
     <string name="label_tip">Tip</string>
     <string name="dollar_amount">$%1$.02f</string>
+  <string name="save_hint">Add Location</string>
+  <string name="action_cancel">Cancel</string>
+  <string name="action_save">Save</string>
 </resources>
